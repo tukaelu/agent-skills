@@ -1,0 +1,84 @@
+{
+  "skill_name": "committer",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "committer スキルを使って、今の変更をコミットして。機能追加とテストを別々にまとめてほしい。",
+      "expected_output": "git status / git diff HEAD を実行して変更を分析し、機能追加ファイルとテストファイルをそれぞれ別グループに分けたコミット計画を提示する。ユーザーの確認後にグループごとにコミットを実行し、作成したコミット一覧を報告する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "analyze-before-commit",
+          "description": "git status と git diff を実行して変更を分析してからコミット計画を立てている",
+          "type": "contains_step"
+        },
+        {
+          "id": "plan-presented-before-execution",
+          "description": "コミット計画をユーザーに提示して確認を取ってから実行している",
+          "type": "contains_step"
+        },
+        {
+          "id": "multiple-commits-created",
+          "description": "機能追加とテストを別コミットに分けて作成している",
+          "type": "output_format"
+        },
+        {
+          "id": "commit-summary-shown",
+          "description": "作成したコミットのハッシュとメッセージ一覧を最後に報告している",
+          "type": "output_format"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "/committer で変更をコミットしてほしい。適切な粒度で分けて。",
+      "expected_output": "変更内容を分析して適切な粒度でグループ化し、各グループのファイルとコミットメッセージの提案をユーザーに提示する。承認後にコミットを実行する。コミットメッセージは既存の git log に合わせたスタイルか Conventional Commits 形式を使う。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "git-log-checked",
+          "description": "git log でコミット履歴・スタイルを確認している",
+          "type": "contains_step"
+        },
+        {
+          "id": "grouping-logic-explained",
+          "description": "なぜそのようにグループ化したかの理由を提示している",
+          "type": "contains_explanation"
+        },
+        {
+          "id": "user-confirmation-required",
+          "description": "コミット実行前にユーザーの確認を求めている",
+          "type": "contains_step"
+        },
+        {
+          "id": "conventional-commits-or-project-style",
+          "description": "コミットメッセージが Conventional Commits 形式またはプロジェクトの既存スタイルに従っている",
+          "type": "output_format"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "committer、ステージ済みのファイルが既にあるんだけど、残りの未ステージ変更も含めてまとめてコミットしてほしい。",
+      "expected_output": "既にステージ済みのファイルがあることを確認し、ユーザーの意図（未ステージ分も含めて分析する）を確認した上で全変更を分析してコミット計画を立てる。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "staged-files-detected",
+          "description": "git diff --cached でステージ済みファイルを確認している",
+          "type": "contains_step"
+        },
+        {
+          "id": "staged-files-handled",
+          "description": "ステージ済みファイルの扱いについてユーザーに確認または適切に処理している",
+          "type": "contains_step"
+        },
+        {
+          "id": "no-push-after-commit",
+          "description": "コミット後に git push を実行していない",
+          "type": "not_contains_step"
+        }
+      ]
+    }
+  ]
+}

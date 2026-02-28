@@ -1,0 +1,45 @@
+{
+  "skill_name": "researcher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "生成AIが日本の働き方や雇用にどんな影響を与えているか調べてほしい。特に中小企業での導入事例や、現場の声みたいなのがあれば知りたい。新しいサービスを企画する前提で情報が欲しい。",
+      "expected_output": "日本の中小企業における生成AI導入の現状（定量データ＋事例）、雇用・働き方への影響（賛否両論）、新サービス企画への示唆をまとめたリサーチレポート",
+      "files": [],
+      "assertions": [
+        "The report includes quantitative data (statistics, percentages, or numbers) about AI adoption or impact in Japan",
+        "The report includes at least one specific SME (中小企業) case study or example",
+        "The report provides actionable insights or implications specifically relevant to new service planning",
+        "The report presents both positive effects (e.g., efficiency gains) and negative effects or concerns (e.g., job displacement)",
+        "The report cites specific sources (URLs, report names, or organization names) for its claims",
+        "The report is structured with clear sections (not a single wall of text)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "最近「フェムテック」って言葉をよく聞くんだけど、市場規模とかどんな企業がいるか調べてほしい。投資判断の参考にしたい。",
+      "expected_output": "フェムテック市場の概況（規模・成長率）、主要プレイヤーと投資動向、市場の課題と展望を整理したレポート。投資判断に役立つ示唆を含む。",
+      "files": [],
+      "assertions": [
+        "The report includes market size figures (e.g., billion dollars/yen) for the femtech market",
+        "The report mentions at least 3 specific company names (domestic or international) in the femtech space",
+        "The report includes investment or funding data (e.g., VC activity, funding rounds, or investment trends)",
+        "The report provides investor-relevant insights such as market opportunities, risks, or key considerations",
+        "The report cites specific sources for market data"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "脱炭素に向けた企業の取り組みについて調べたいんだけど、何から聞けばいい？うちは製造業で、サプライチェーン全体でのCO2削減を考えているんだが。",
+      "expected_output": "製造業のサプライチェーン脱炭素に関して壁打ちを通じてテーマを深掘りし、調査の方向性を明確化した上で、関連する規制動向・業界事例・具体的なアクションへの示唆を提供する",
+      "files": [],
+      "assertions": [
+        "The report acknowledges the brainstorming/dialogue nature of the request (addresses that the user asked 'what should I ask first?')",
+        "The report addresses supply chain emissions context (mentions Scope 1/2/3 or equivalent supply chain CO2 reduction framework)",
+        "The report includes regulatory or policy context relevant to Japan (e.g., GX strategy, TCFD, carbon pricing)",
+        "The report includes at least one concrete manufacturing industry case study or best practice example",
+        "The report provides concrete starting points, frameworks, or next action recommendations for the user"
+      ]
+    }
+  ]
+}

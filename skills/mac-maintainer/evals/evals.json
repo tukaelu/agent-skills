@@ -1,0 +1,84 @@
+{
+  "skill_name": "mac-maintainer",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Mac の開発環境をアップデートしてほしい。brew と anyenv を使ってインストール済みのパッケージや env を全部最新にして。",
+      "expected_output": "環境確認 → brew update/upgrade/cleanup → anyenv update の順で実行し、アップデートされたパッケージ一覧と完了サマリーを表示する",
+      "files": [],
+      "assertions": [
+        {
+          "id": "brew-update-before-upgrade",
+          "description": "brew upgrade の前に brew update を実行している",
+          "type": "contains_step"
+        },
+        {
+          "id": "brew-cleanup-included",
+          "description": "brew cleanup を実行してキャッシュを整理している",
+          "type": "contains_step"
+        },
+        {
+          "id": "anyenv-check-first",
+          "description": "anyenv のインストール確認をしてから anyenv update を実行している",
+          "type": "contains_step"
+        },
+        {
+          "id": "structured-summary",
+          "description": "Homebrew と anyenv の結果を分けた構造化サマリーを表示している",
+          "type": "output_format"
+        },
+        {
+          "id": "sudo-cask-error-handling",
+          "description": "sudo が必要な cask のエラーが発生した場合に手動実行を案内している",
+          "type": "error_handling"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "brew upgrade だけやっておいてほしい。anyenv はとりあえずいい。",
+      "expected_output": "Homebrew の update/upgrade/cleanup のみ実行し、anyenv はスキップする。アップグレードされたパッケージのリストを表示する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "anyenv-skipped",
+          "description": "anyenv コマンドを実行していない",
+          "type": "not_contains_step"
+        },
+        {
+          "id": "brew-cleanup-included",
+          "description": "brew cleanup を実行している",
+          "type": "contains_step"
+        },
+        {
+          "id": "skip-noted-in-summary",
+          "description": "anyenv をスキップしたことをサマリーに明記している",
+          "type": "output_format"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "anyenv を更新しようとしたら「anyenv: no such command 'update'」というエラーが出た。どうすればいい？",
+      "expected_output": "anyenv-update プラグインが未インストールであることを説明し、インストール手順を案内する。代替として git pull による手動更新方法も提示する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "anyenv-update-plugin-explanation",
+          "description": "anyenv-update プラグインについて説明している",
+          "type": "contains_explanation"
+        },
+        {
+          "id": "install-command-provided",
+          "description": "git clone によるプラグインインストールコマンドを提示している",
+          "type": "contains_command"
+        },
+        {
+          "id": "fallback-provided",
+          "description": "プラグインなしの代替手順（git pull）も提示している",
+          "type": "contains_fallback"
+        }
+      ]
+    }
+  ]
+}

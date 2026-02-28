@@ -1,0 +1,99 @@
+{
+  "skill_name": "git-branch-cleaner",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "git-branch-cleaner でマージ済みブランチをローカルから削除して。起点は main で。",
+      "expected_output": "main にマージ済みのローカルブランチを検出し（保護ブランチを除外）、削除対象一覧をユーザーに提示して確認を取ってから git branch -d で削除する。完了後に削除したブランチの一覧を報告する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "merged-branches-detected",
+          "description": "git branch --merged main でマージ済みブランチを検出している",
+          "type": "contains_step"
+        },
+        {
+          "id": "protected-branches-excluded",
+          "description": "main / master / develop などの保護ブランチを削除対象から除外している",
+          "type": "contains_step"
+        },
+        {
+          "id": "user-confirmation-required",
+          "description": "削除実行前にユーザーの確認を求めている",
+          "type": "contains_step"
+        },
+        {
+          "id": "safe-delete-used",
+          "description": "git branch -d（安全削除）を使っており -D（強制削除）は使っていない",
+          "type": "output_format"
+        },
+        {
+          "id": "completion-summary-shown",
+          "description": "削除完了後に削除したブランチの一覧を報告している",
+          "type": "output_format"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "/git-branch-cleaner remote で origin のマージ済みブランチを掃除して。develop が起点。",
+      "expected_output": "develop にマージ済みのリモートブランチを git branch -r --merged develop で検出し、origin/HEAD や origin/develop を除外して削除対象をユーザーに提示する。確認後に git push origin --delete でリモートブランチを削除し、完了を報告する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "remote-merged-detected",
+          "description": "git branch -r --merged develop でリモートのマージ済みブランチを検出している",
+          "type": "contains_step"
+        },
+        {
+          "id": "origin-head-excluded",
+          "description": "origin/HEAD や origin/develop を削除対象から除外している",
+          "type": "contains_step"
+        },
+        {
+          "id": "user-confirmation-required",
+          "description": "削除実行前にユーザーの確認を求めている",
+          "type": "contains_step"
+        },
+        {
+          "id": "push-delete-used",
+          "description": "git push origin --delete でリモートブランチを削除している",
+          "type": "output_format"
+        },
+        {
+          "id": "local-not-deleted",
+          "description": "scope が remote のためローカルブランチの削除（git branch -d）は実行していない",
+          "type": "not_contains_step"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "git-branch-cleaner both で main にマージ済みのブランチをローカルとリモート両方から削除したい。",
+      "expected_output": "main にマージ済みのローカルおよびリモートブランチを検出し、保護ブランチと現在のブランチを除外した上で削除対象を一覧表示する。ユーザーの確認後にローカルは git branch -d、リモートは git push origin --delete で削除して完了を報告する。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "both-local-and-remote-detected",
+          "description": "ローカルとリモート両方のマージ済みブランチを検出している",
+          "type": "contains_step"
+        },
+        {
+          "id": "user-confirmation-required",
+          "description": "削除実行前にユーザーの確認を求めている",
+          "type": "contains_step"
+        },
+        {
+          "id": "both-deleted",
+          "description": "git branch -d でローカル削除と git push origin --delete でリモート削除の両方を実行している",
+          "type": "output_format"
+        },
+        {
+          "id": "scope-shown-in-summary",
+          "description": "完了報告でローカルとリモートのそれぞれの削除件数を報告している",
+          "type": "output_format"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "skill_name": "proofreader",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "以下のファイルを校正してください: /Users/tuka/Repos/github.com/tukaelu/agent-skills/skills/proofreader-workspace/test_files/japanese_draft.md",
+      "expected_output": "日本語文章の誤字・助詞の誤り・冗長表現・表記ゆれを指摘し、修正案を番号付きリストで提示する。修正後の全文も表示する。",
+      "files": [
+        "/Users/tuka/Repos/github.com/tukaelu/agent-skills/skills/proofreader-workspace/test_files/japanese_draft.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "以下の文章を校正してください。\n\n---\n弊社サービスのご利用規約改定について、お客様各位にお知らせ致します。今月末を持って、一部の条項が変更となります。変更の詳細はウェブサイトにてご確認頂けます。ご不便をお掛けして申し訳御座いません。今後とも何卒よろしくお願いします。",
+      "expected_output": "インラインで渡された日本語文章の誤り（致します/頂けます/御座いませんなどの漢字表記、語尾の統一など）を指摘し、修正案を提示する。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Please proofread the following file: /Users/tuka/Repos/github.com/tukaelu/agent-skills/skills/proofreader-workspace/test_files/english_draft.md",
+      "expected_output": "英語文章の文法エラー（動詞の形・冠詞・前置詞・スペルミスなど）を指摘し、修正案を番号付きリストで提示する。修正後の全文も表示する。",
+      "files": [
+        "/Users/tuka/Repos/github.com/tukaelu/agent-skills/skills/proofreader-workspace/test_files/english_draft.md"
+      ]
+    }
+  ]
+}
