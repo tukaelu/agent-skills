@@ -26,6 +26,10 @@ npx skills add tukaelu/agent-skills
 
 Homebrew・anyenv 経由でMac環境のパッケージを一括アップデートする。
 
+### mermaid-generator
+
+ユーザーとの壁打ちを通じてMermaidの図を完成させる。アスキーアートでイメージを確認しながら合意が取れたらコードを生成する。
+
 ### proofreader
 
 日本語・英語の校正・推敲を行い、誤字脱字・文法ミス・表現の改善点を提示する。
