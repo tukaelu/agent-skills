@@ -19,7 +19,7 @@ allowed-tools:
 model: sonnet
 ---
 
-# Development Skill
+# Skill Composer
 
 スキルの新規作成とメンテナンスをサポートするオーケストレーターです。
 情報収集・`example-skills:skill-creator` によるスキル生成・ `skill-reviewer` によるレビューと自動修正を一貫して管理します。

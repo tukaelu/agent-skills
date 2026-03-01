@@ -13,7 +13,7 @@ allowed-tools:
 model: sonnet
 ---
 
-# Review Skill
+# Skill Reviewer
 
 公式ベストプラクティスに基づいてスキルをレビューし、具体的な改善提案を行う。
 
